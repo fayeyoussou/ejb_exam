@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: lombok.jar 
+ slf4j-api-2.0.6.jar
+

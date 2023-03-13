@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="ejb_exam">
+        <wb-resource deploy-path="/" source-path="/ejbModule" tag="defaultRootSource"/>
+        <property name="java-output-path" value="/ejb_exam/build/classes"/>
+        <property name="ClientProject" value="ejb_examClient"/>
+        <property name="ClientJARURI" value="ejb_examClient.jar"/>
+    </wb-module>
+</project-modules>
