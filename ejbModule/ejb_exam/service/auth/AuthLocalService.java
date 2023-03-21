@@ -1,14 +1,17 @@
 package ejb_exam.service.auth;
 
-import java.util.List;
 
-import org.wildfly.security.password.Password;
 
-import ejb_exam.dto.request.RoleRequest;
-import ejb_exam.dto.response.RoleResponse;
-import ejb_exam.entities.Role;
+import javax.ejb.Local;
+
+import ejb_exam.dto.request.LoginRequest;
+import ejb_exam.dto.request.RegisterRequest;
+import ejb_exam.dto.response.UserResponse;
 import ejb_exam.entities.User;
 
+@Local
 public interface AuthLocalService {
-	UserResponse login(LoginRequest);
+	User login(LoginRequest request);
+	User register(RegisterRequest request);
+	Boolean mailUser(User user);
 }

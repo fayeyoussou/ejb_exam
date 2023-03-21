@@ -1,7 +1,9 @@
 package ejb_exam.dao;
 
-import ejb_exam.entities.Experience;
+import javax.enterprise.context.RequestScoped;
 
+import ejb_exam.entities.Experience;
+@RequestScoped
 public class ExperienceDao extends DaoEntite<Experience, Long> {
 
 	@Override

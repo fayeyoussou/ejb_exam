@@ -5,7 +5,9 @@ import java.util.List;
 
 import ejb_exam.dto.request.RoleRequest;
 import ejb_exam.dto.response.RoleResponse;
+import ejb_exam.dto.response.UserResponse;
 import ejb_exam.entities.Role;
+import ejb_exam.entities.User;
 
 public abstract class Mapper {
 	public static RoleResponse roleToResponse(Role role) {
@@ -24,4 +26,5 @@ public abstract class Mapper {
 		roles.forEach(role->roleResponses.add(roleToResponse(role)));
 		return roleResponses;
 	}
+	
 }

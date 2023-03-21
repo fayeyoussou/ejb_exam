@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
 Class-Path: lombok.jar 
- slf4j-api-2.0.6.jar
+ spring-security-crypto-6.0.2.jar
 
