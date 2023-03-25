@@ -1,6 +1,7 @@
 package ejb_exam.entities;
 
-
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,21 +16,20 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
-
-@Entity
-@Table(name = "experiences")
-@Data
-public class Experience {
+@Entity @Table(name = "messages") @Data
+public class Message {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(nullable = false)
-	private String title;
 	@Column(columnDefinition = "TEXT",nullable = false)
-	private String description;
+	private String contenu;
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
+	@JoinColumn(name = "envoyeur",nullable = false)
+	private User envoyeur;
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
-	@JoinColumn(name = "cv_id",nullable = false)
-	private CV cv;
-	
+	@JoinColumn(name = "discussion_id",nullable = false)
+	private Discussion discussion;
+	@Column(name = "date_message", nullable = false)
+    private OffsetDateTime dateMessage = OffsetDateTime.now(ZoneOffset.UTC);
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -77,6 +78,20 @@ public abstract class DaoEntite<T, ID extends Serializable> {
 			return Collections.emptyList();
 		}
         
+    }
+    public T findOneByFieldName(String fieldName, Object value) {
+        try {
+            CriteriaBuilder builder = em.getCriteriaBuilder();
+            CriteriaQuery<T> query = builder.createQuery(getTypeClass());
+            Root<T> root = query.from(getTypeClass());
+            query.where(builder.equal(root.get(fieldName), value));
+            TypedQuery<T> typedQuery = em.createQuery(query).setMaxResults(1);
+            List<T> resultList = typedQuery.getResultList();
+            return resultList.isEmpty() ? null : resultList.get(0);
+        } catch (Exception e) {
+            log.error(e.fillInStackTrace());
+            return null;
+        }
     }
     public List<T> list() {
     	try {

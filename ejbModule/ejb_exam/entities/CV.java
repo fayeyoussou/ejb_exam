@@ -1,5 +1,7 @@
 package ejb_exam.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,26 +12,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
-
 @Entity
-@Table(name = "experiences")
+@Table(name = "cvs")
 @Data
-public class Experience {
+public class CV {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(nullable = false)
-	private String title;
-	@Column(columnDefinition = "TEXT",nullable = false)
-	private String description;
+	private String nom;
+	private String prenom;
+	private int age;
+	private String mail;
+	private String telephone;
+	private String niveau;
+	@OneToMany(mappedBy = "cv",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	private List<Experience> experiences= new ArrayList<>();
+	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id",nullable = false)
 	@JsonIgnore
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
-	@JoinColumn(name = "cv_id",nullable = false)
-	private CV cv;
-	
+	private User user;
 }

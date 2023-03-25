@@ -1,4 +1,7 @@
 Manifest-Version: 1.0
 Class-Path: lombok.jar 
- spring-security-crypto-6.0.2.jar
+ spring-security-crypto-6.0.2.jar 
+ jackson-annotations-2.14.1.jar 
+ jackson-core-2.14.1.jar 
+ jackson-databind-2.14.1.jar
 

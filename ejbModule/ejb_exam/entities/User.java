@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -28,15 +30,13 @@ public class User {
 	@Column(unique = true,length = 100)
 	private String login;
 	private String password;
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
 	@JoinColumn(name = "role_id",nullable = false)
 	private Role role;
 	private String nom;
 	private String prenom;
-	private int age;
-	private String mail;
-	private String telephone;
-	private String niveau;
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	private List<Experience> experiences= new ArrayList<>();
+	private List<CV> cvs= new ArrayList<>();
+	
 }
